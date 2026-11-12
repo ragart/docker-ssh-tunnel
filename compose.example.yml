@@ -1,0 +1,10 @@
+# One service per SSH server. Reach the forwarded ports from the same network as <service>:<listen_port>.
+services:
+  tunnel-example:
+    image: ragart/ssh-tunnel:1.0.0
+    restart: unless-stopped
+    env_file:
+      - .tunnel-example.env        # from tunnel.env.example
+    volumes:
+      - ./ssh_tunnel_example:/ssh:ro   # id_ed25519 + known_hosts
+    # No "ports:": only containers on the same network reach it.
