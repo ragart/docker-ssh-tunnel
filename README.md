@@ -6,7 +6,7 @@ SSH off) instead of n8n's built-in SSH tunnel.
 
 ## Setup (one tunnel)
 
-1. Use the image `ragart/ssh-tunnel:1.0.0` (build and publish: see the end of this file).
+1. Use the image `ragart/ssh-tunnel:1.0.1` (build and publish: see the end of this file).
 2. Create the key folder, e.g. `./tunnel-server1-ssh/`, with:
    - `id_ed25519`: a key dedicated to the tunnel. Permissions don't matter; the container copies it to a private path.
    - `known_hosts`: the server's host key. Host keys are always checked. Get it with
@@ -48,7 +48,7 @@ More tunnels: one more service with its own `.env` and key folder (same image).
 
 ```bash
 docker buildx build --platform linux/amd64,linux/arm64 \
-  -t ragart/ssh-tunnel:1.0.0 -t ragart/ssh-tunnel:latest --push .
+  -t ragart/ssh-tunnel:1.0.1 -t ragart/ssh-tunnel:latest --push .
 ```
 Bump `org.opencontainers.image.version` in the Dockerfile and the tag together. Compose files should
 reference the exact version, never `latest`.
